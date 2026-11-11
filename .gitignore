@@ -1,0 +1,18 @@
+# 大数据文件一律不进 git，仅保留数据集的 schema/copy.cypher
+data/**
+!data/**/
+!data/**/schema.cypher
+!data/**/copy.cypher
+!data/**/source.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 序列化库与基准运行产物
+*.lbdb
+results/
+packages/
+*.bundle
+/tmp/
