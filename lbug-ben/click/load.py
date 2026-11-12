@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-import lbug
+try:
+    import lbug
+except ImportError:
+    # PyPI wheel (ladybug==0.22.3) exposes the top-level module as `ladybug`
+    import ladybug as lbug
 import timeit
 import psutil
 

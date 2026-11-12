@@ -8,7 +8,11 @@ import tarfile
 import urllib.error
 import urllib.request
 
-import lbug as lb
+try:
+    import lbug as lb
+except ImportError:
+    # PyPI wheel (ladybug==0.22.3) exposes the top-level module as `ladybug`
+    import ladybug as lb
 import psutil
 
 from serializer import _get_lbug_version

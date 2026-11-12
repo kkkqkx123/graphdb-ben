@@ -5,7 +5,11 @@ import sys
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
 
-import lbug as lb
+try:
+    import lbug as lb
+except ImportError:
+    # PyPI wheel (ladybug==0.22.3) exposes the top-level module as `ladybug`
+    import ladybug as lb
 
 def _get_lbug_version():
     cmake_file = os.path.join(base_dir, '..', '..', 'CMakeLists.txt')

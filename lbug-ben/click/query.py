@@ -3,7 +3,11 @@
 import timeit
 import sys
 
-import lbug
+try:
+    import lbug
+except ImportError:
+    # PyPI wheel (ladybug==0.22.3) exposes the top-level module as `ladybug`
+    import ladybug as lbug
 
 query = sys.stdin.read()
 print(query)
