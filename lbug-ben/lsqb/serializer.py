@@ -13,11 +13,18 @@ except ImportError:
 
 def _get_lbug_version():
     cmake_file = os.path.join(base_dir, '..', '..', 'CMakeLists.txt')
-    with open(cmake_file) as f:
-        for line in f:
-            if line.startswith('project(Lbug VERSION'):
-                return line.split(' ')[2].strip()
-            
+    try:
+        with open(cmake_file) as f:
+            for line in f:
+                if line.startswith('project(Lbug VERSION'):
+                    return line.split(' ')[2].strip()
+    except FileNotFoundError:
+        pass
+    # Vendored checkout has no upstream CMakeLists.txt; fall back to the
+    # installed wheel version.
+    import ladybug
+    return getattr(ladybug, '__version__', 'unknown')
+
             
 def check_updated_version(bin_version, dataset_name, serialized_graph_path):
     os.makedirs(serialized_graph_path, exist_ok=True)
